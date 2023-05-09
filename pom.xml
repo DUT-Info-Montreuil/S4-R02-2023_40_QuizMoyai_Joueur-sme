@@ -4,11 +4,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>fr.naulan</groupId>
-  <artifactId>maven-test</artifactId>
+  <groupId>fr.iut.montreuil</groupId>
+  <artifactId>S4_R04_2023_40_QuizMoyai</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>maven-test</name>
+  <name>S4_R04_2023_40_QuizMoyai</name>
   <description>A simple maven-test.</description>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
