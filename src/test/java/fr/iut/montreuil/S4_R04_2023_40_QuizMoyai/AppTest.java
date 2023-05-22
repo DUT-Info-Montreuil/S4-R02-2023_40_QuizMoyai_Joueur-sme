@@ -1,4 +1,4 @@
-package fr.naulan;
+package fr.iut.montreuil.S4_R04_2023_40_QuizMoyai;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
