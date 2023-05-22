@@ -22,12 +22,13 @@ public class UserDTO {
         this.hobbies = new HashSet<>(Arrays.asList(hobbies.split(",")));
     }
 
-    public void addStatDTOList(StatDTO stat) throws InvalidStatsException {
-        if (stat.getIdQuiz() < 0
+    public StatDTO addStatDTOList(StatDTO stat) throws InvalidStatsException {
+        if (stat.getIdQuiz() <= 0
             || stat.getNbGoodAnswer() > stat.getNbQuestion()
-            || stat.getTimeQuestion() < 0)
+            || stat.getTimeQuestion() <= 0)
             throw new InvalidStatsException();
         this.statDTOList.add(stat);
+        return stat;
     }
 
     public String getFirstName() {

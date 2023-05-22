@@ -42,7 +42,7 @@ public class UserImpl implements UserInterface {
 
     @Override
     public List<StatDTO> fournirStatsUser(String pseudo) throws UserNotFoundException {
-        if (!haveUsers() && !userExist(pseudo))
+        if (!haveUsers() || !userExist(pseudo))
             throw new UserNotFoundException();
         UserDTO user = this.userDTOList.stream().filter(u -> u.getPseudonym().equals(pseudo)).findFirst().get();
         return user.getStatDTOList();
