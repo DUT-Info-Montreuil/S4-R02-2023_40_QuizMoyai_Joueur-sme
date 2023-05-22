@@ -1,5 +1,6 @@
 package fr.iut.montreuil.S4_R04_2023_40_QuizMoyai.impl;
 
+import fr.iut.montreuil.S4_R04_2023_40_QuizMoyai.entities.dto.StatDTO;
 import fr.iut.montreuil.S4_R04_2023_40_QuizMoyai.entities.dto.UserDTO;
 import fr.iut.montreuil.S4_R04_2023_40_QuizMoyai.exceptions.*;
 import fr.iut.montreuil.S4_R04_2023_40_QuizMoyai.modeles.UserInterface;
@@ -11,11 +12,12 @@ import java.util.List;
 
 public class UserImpl implements UserInterface {
 
-    private List<UserDTO> userDTOList;
+    private final List<UserDTO> userDTOList;
 
     public UserImpl() {
         userDTOList = new ArrayList<>();
     }
+
     @Override
     public UserDTO createUser(String firstName, String pseudo, int preferenceLanguage, int birthYear, String hobbies) {
         if (isBlank(firstName))
@@ -36,6 +38,14 @@ public class UserImpl implements UserInterface {
         UserDTO newUser =  new UserDTO(firstName,pseudo,birthYear,hobbies,preferenceLanguage);
         userDTOList.add(newUser);
         return newUser;
+    }
+
+    @Override
+    public List<StatDTO> fournirStatsUser(String pseudo) throws UserNotFoundException {
+        if (!haveUsers() && !userExist(pseudo))
+            throw new UserNotFoundException();
+        UserDTO user = this.userDTOList.stream().filter(u -> u.getPseudonym().equals(pseudo)).findFirst().get();
+        return user.getStatDTOList();
     }
 
     private boolean isFirstNameValid(String firstName) {
@@ -64,6 +74,14 @@ public class UserImpl implements UserInterface {
                 return true;
         }
         return false;
+    }
+
+    private boolean haveUsers() {
+        return this.userDTOList.size() > 0;
+    }
+
+    private boolean userExist(String pseudo) {
+        return this.userDTOList.stream().anyMatch(user -> user.getPseudonym().equals(pseudo));
     }
 
     public List<UserDTO> getUserDTOList() {
